@@ -113,18 +113,18 @@ function fetch_device_info {
     hostname
     cat /etc/os-release || true
     cat /proc/sys/kernel/numa_balancing || true
-    scaling_governor=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
-    if [ $(sudo -n true > /dev/null 2>&1 && echo $? || echo $?) -eq 0 ];then
-        if [ "${scaling_governor}" != "performance" ];then
-            # set frequency governor to performance mode
-            sudo cpupower frequency-set -g performance || true
-        fi
-        # clean cache
-        sync; sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
-    else
-        echo "[INFO] You do NOT have ROOT permission to set system config."
-        echo "       The frequency governor is ${scaling_governor}."
-    fi
+    # scaling_governor=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
+    # if [ $(sudo -n true > /dev/null 2>&1 && echo $? || echo $?) -eq 0 ];then
+    #     if [ "${scaling_governor}" != "performance" ];then
+    #         # set frequency governor to performance mode
+    #         sudo cpupower frequency-set -g performance || true
+    #     fi
+    #     # clean cache
+    #     sync; sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
+    # else
+    #     echo "[INFO] You do NOT have ROOT permission to set system config."
+    #     echo "       The frequency governor is ${scaling_governor}."
+    # fi
     lscpu
     uname -a
     free -h
