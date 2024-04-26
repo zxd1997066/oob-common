@@ -232,7 +232,7 @@ function init_params {
     model_name='model_name'
     mode_name='realtime'
     precision='float32'
-    # batch_size=1
+    batch_size=1
     numa_nodes_use='all'
     cores_per_instance=4
     num_warmup=20
@@ -261,9 +261,9 @@ function init_params {
             --precision=*)
                 precision=$(echo $var |cut -f2 -d=)
             ;;
-            # --batch_size=*)
-            #     batch_size=$(echo $var |cut -f2 -d=)
-            # ;;
+            --batch_size=*)
+                batch_size=$(echo $var |cut -f2 -d=)
+            ;;
             --numa_nodes_use=*)
                 numa_nodes_use=$(echo $var |cut -f2 -d=)
             ;;
