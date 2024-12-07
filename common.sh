@@ -137,8 +137,8 @@ function fetch_device_info {
     }')
     numa_nodes_num=$(numactl -H |grep 'node [0-9]* cpus: [0-9].*' |wc -l)
     threads_per_core=$(lscpu |grep 'Thread(s) per core:' |sed 's/[^0-9]//g')
-    cores_per_node=$(numactl -H |grep "node 0 cpus:" |sed 's/.*://' |awk -v tpc=$threads_per_core '{print int(NF / tpc)}')
-    # cores_per_node=40
+    # cores_per_node=$(numactl -H |grep "node 0 cpus:" |sed 's/.*://' |awk -v tpc=$threads_per_core '{print int(NF / tpc)}')
+    cores_per_node=40
     if [ "${OOB_HBM_FLAT}" != "" ];then
         hbm_index=$numa_nodes_num
     else
